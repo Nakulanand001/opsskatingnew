@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Player Data</h1>
+
+    <!-- Form for searching and selecting sheet -->
+    <form method="POST">
+        <label for="sheet">Select Sheet:</label>
+        <select name="sheet" id="sheet">
+            {% for sheet in sheets %}
+            <option value="{{ sheet }}" {% if sheet == selected_sheet %} selected {% endif %}>{{ sheet }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="search">Search:</label>
+        <input type="text" id="search" name="search" value="{{ search_query }}" placeholder="Enter search term">
+
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Display table -->
+    <div>
+        {{ table|safe }}
+    </div>
+</body>
+</html>
